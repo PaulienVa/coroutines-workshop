@@ -21,6 +21,16 @@ In this hands-on workshop, the basics of coroutines will be explained, the conce
 | 2   | Concept of Flow             | Ex2    | [Exercise 2](./exercises/Ex2.md)  |
 | 3   | Integration with frameworks | Ex3    | [Exercise 1](./exercises/Ex2.md)  |
 
+## Preparing for the workshop
+Required version:
+
+Java 13
+Kotlin 1.4.21
+
+```bash
+sdk install kotlin
+```
+
 ## Basic commands
 
 The following commands can be used during this workshop
