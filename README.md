@@ -13,9 +13,11 @@ In this hands-on workshop, the basics of coroutines will be explained, the conce
 
 ## Exercises
 
-1. Basic of coroutines (branch Ex1)
-2. Concept of Flow (branch Ex2)
-3. Integration with frameworks (branch Ex3)
+| nr  | learning points             | branch | description                       |
+| --- | ---                         | ----   | ---                               | 
+| 1   | Basic of coroutines         | Ex1    | [Exercise 1](./exercises/Ex1.md)  | 
+| 2   | Concept of Flow             | Ex2    | [Exercise 2](./exercises/Ex2.md)  |
+| 3   | Integration with frameworks | Ex3    | [Exercise 1](./exercises/Ex2.md)  |
 
 ## Basic commands
 
