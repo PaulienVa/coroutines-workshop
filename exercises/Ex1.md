@@ -17,3 +17,15 @@ Using `launch {}` a new coroutine inside the coroutine is started and ran in the
 Run this piece of code using the `main` function in the [Exercise1Runner](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/runners/Exercise1Runner.kt).
 
 Have a look at the print statements to understand the order in which the code is executed.
+
+Now the last line of logging in the `runBlocking {}` block, is not the last one showed. The only way to get this done is to wait until the child coroutine is finished. 
+
+To do so, assign the `launch {}` block to a variable called `job`. 
+/!\ it is important this variable is assigned into the `runBlocking` as the coroutines is executed.
+This variable `job` is of type `Job`.
+By calling the function `join()`, parent coroutine will wait until the job coroutine is completed. 
+
+Now run the exercise again to see the order of the logging. 
+
+Of course, this is not completely the idea of concurrent programming, but it is good to know how to keep it under control.
+  
