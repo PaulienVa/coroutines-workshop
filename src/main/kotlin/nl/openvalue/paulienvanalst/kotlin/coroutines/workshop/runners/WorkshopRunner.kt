@@ -4,9 +4,8 @@ object WorkshopRunner {
 
     fun run() {
         println("Which exercise do you want to execute? (1/2/3)")
-        val exNr = readLine()
 
-        when(exNr){
+        when(readLine()){
             "1" -> Exercise1Runner.run()
             "2" -> Exercise2Runner.run()
             "3" -> Exercise3Runner.run()
