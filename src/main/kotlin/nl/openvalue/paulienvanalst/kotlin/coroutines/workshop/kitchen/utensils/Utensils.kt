@@ -7,6 +7,12 @@ data class Pan(val content: Int, val liquid: Liquid, val temperature: Int) {
 }
 
 data class Bowl(val content: String) {
+    companion object {
+        fun empty() : Bowl {
+            return Bowl("")
+        }
+    }
+
     fun addContent(ingredient: String) = this.copy(content = "$content $ingredient")
 }
 
