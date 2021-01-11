@@ -1,7 +1,9 @@
 package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen
 
-import kotlinx.coroutines.*
-
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen.utensils.Pan
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.utils.Printer.printlnCW
 

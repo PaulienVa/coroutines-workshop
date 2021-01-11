@@ -2,7 +2,6 @@ package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.runners
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withTimeout
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen.Cooker
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen.utensils.Liquid
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen.utensils.Pan
