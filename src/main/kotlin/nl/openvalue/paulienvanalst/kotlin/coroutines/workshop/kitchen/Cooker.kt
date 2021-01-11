@@ -6,25 +6,28 @@ import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen.utensils.P
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.utils.Printer.printlnCW
 
 object Cooker {
-    fun boil(pan: Pan) {
-        runBlocking { //start main coroutine
+    suspend fun boil(pan: Pan) : Boolean {
+        coroutineScope { //start main coroutine
             val boiler = launch { // launches a new coroutine in the background but continue
+                println("\n")
                 printlnCW("[IN LAUNCH]: Starting to boil a pan of ${pan.liquid}")
                 increaseUntilBoilingPoint(pan)
                 printlnCW("[IN LAUNCH]: Finished boiling a pan of ${pan.liquid}")
+                println("\n")
             }
             printlnCW("[IN RUN_BLOCKING]: Starting to prepare the boiling of the water")
-            delay(10)
+            delay(100)
             boiler.cancelAndJoin()
             printlnCW("[IN RUN_BLOCKING]: Finished boiling a pan of ${pan.liquid}")
         }
+        return true
     }
 
     private suspend fun increaseUntilBoilingPoint(pan: Pan) {
-        while (pan.temperature < 100) {
+        if (!pan.isBoiling) {
             delay(2)
-            pan.increaseTemperature()
-            printlnCW("[IN LAUNCH 1]: Increasing pan's temperature to ${pan.temperature}")
+            printlnCW("[IN LAUNCH]: Increasing ${pan.liquid}'s temperature to ${pan.temperature + 10}")
+            increaseUntilBoilingPoint(pan.increaseTemperature())
         }
     }
 }

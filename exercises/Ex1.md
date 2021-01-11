@@ -77,4 +77,58 @@ This is due to the `delay()` function that is used in the `while` block. This fu
 
 ## Composing
 
+Now increase the delay on line 17 to 300 ms. -> replace this with a checkout of a branch (with the recursive function)
 
+We are going to see how it works to compose several coroutines in one. 
+
+The assignment is to cook two pans at the same time: one of water and one of olive oil. When both are finished, a signal will be displayed.
+
+To do so, follow the following steps:
+ 1. make the `boil` function in the `Cooker` object, a suspend function
+ 2. make it return a Boolean with value true (at the last line of the function)
+ 2. replace the `runBlocking` by `coroutineScope`
+ 
+The last step has to be taken, as `runBlocking` will block the current thread until all the code has completed. However, in this part of the exercise, we want to start both pans boiling at the same time, so both coroutines should be able to start.
+ 
+Now the `Exercise1Runner` won't compile anymore, the boil function is now a suspend function without a coroutine scope, this won't work. We need to introduce a coroutine scope.
+Use a runBlocking block again. The coroutines will be terminated, once this block is terminated.
+
+For now, we will use the `GlobalScope.launch` method, just to be using something different.
+
+In [Exercise1Runner](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/runners/Exercise1Runner.kt), the `run` function should look like this:
+
+```kotlin
+  runBlocking {
+    Cooker.boil(Pan(1, Liquid.WATER, 10))
+  }
+```
+
+Now, wrap the `Cooker.boil` statement in a `async` block and add another async block for cookie olive oil (there is an `OLIVE_OIL` enum present in the `Liquid` enum).
+The results of both `async` blocks to variables: `val waterPan` and `val oliveOilPan`.
+Now add the following statement:
+
+```kotlin
+if (waterPan.await() && oliveOilPan.await()) {
+    println("\n")
+    printlnCW("[RUNNER]: Both pans are finished boiling \n")
+}
+```
+
+Now have a look at the logging produced. It is visible that the cooking process starts simultaniously and that the olive oil pan, which takes more time to boil continues even though the water is already finished.
+The signal that both pans are finished boiling is only displayed when both coroutines are completed.
+
+## Timeouts
+
+One last thing about coroutines. It looks a bit scary to work with delays, waiting for one another, so one might want to secure this whole process by determining a timeout.
+For that in `Exercise1Runner`, wrap the following statements in a `withTimeout` block, with a timeout of 10ms, to see what happens:
+```kotlin
+withTimeout(10){
+    val waterPan = async { Cooker.boil(Pan(1, Liquid.WATER, 10)) }
+    val oliveOilPan = async { Cooker.boil(Pan(1, Liquid.OLIVE_OIL, 10)) }
+    
+    if (waterPan.await() && oliveOilPan.await()) {
+        println("\n")
+        printlnCW("[RUNNER]: Both pans are finished boiling \n")
+    }
+}
+```
