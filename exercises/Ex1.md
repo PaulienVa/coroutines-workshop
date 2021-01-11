@@ -7,7 +7,7 @@ Kotlin coroutines are light-weight threads on the JVM. Using coroutines, concurr
 
 ## First coroutine.
 
-To start to get some feeling on what a coroutine is, let's have a look at our [Cooker](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cooker.kt).
+To start to get some feeling on what a coroutine is, let's have a look at our [Cooker](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cook.kt).
 In the function `boil(pan)` a coroutine is started using `runBlocking {}`. `runBlocking` blocks the current thread, executes the code in the block and releases the thread once all the jobs inside the coroutine are completed.
 Using `launch {}` a new coroutine inside the coroutine is started and ran in the background.
 

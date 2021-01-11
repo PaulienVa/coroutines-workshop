@@ -6,6 +6,10 @@ data class Pan(val content: Int, val liquid: Liquid, val temperature: Int) {
     val isBoiling = this.temperature >= liquid.boilingPoint
 }
 
+data class Bowl(val content: String) {
+    fun addContent(ingredient: String) = this.copy(content = "$content $ingredient")
+}
+
 enum class Liquid(val boilingPoint: Int) {
     WATER(100),
     OLIVE_OIL(180)
