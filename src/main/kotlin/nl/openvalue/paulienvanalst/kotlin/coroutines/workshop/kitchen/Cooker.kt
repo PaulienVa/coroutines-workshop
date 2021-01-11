@@ -8,16 +8,18 @@ import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.utils.Printer.prin
 object Cooker {
     fun boil(pan: Pan) {
         runBlocking { //start main coroutine
-            val job = launch { // launches a new coroutine in the background but continue
+            val boiler = launch { // launches a new coroutine in the background but continue
                 printlnCW("[IN LAUNCH 1]: Starting to boil a pan of ${pan.liquid}")
                 while (pan.temperature < 100) {
+                    delay(2)
                     pan.increaseTemperature()
                     printlnCW("[IN LAUNCH 1]: Increasing pan's temperature to ${pan.temperature}")
                 }
                 printlnCW("[IN LAUNCH 1]: Finished boiling a pan of ${pan.liquid}")
             }
             printlnCW("[IN RUN_BLOCKING]: Starting to prepare the boiling of the water")
-            job.join()
+            delay(10)
+            boiler.cancelAndJoin()
             printlnCW("[IN RUN_BLOCKING]: Finished boiling a pan of ${pan.liquid}")
         }
     }
