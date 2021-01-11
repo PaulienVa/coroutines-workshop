@@ -12,12 +12,12 @@ import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.utils.Printer.prin
 object Cook {
 
     suspend fun mixIngredientsInBowl(recipe: Recipe) {
-        val pancakeIngredients = collectIngredients(recipe.ingredients)
+        val pancakeIngredients = gatherIngredients(recipe.ingredients)
         val bowl = mixInBowl(pancakeIngredients, recipe.name)
         printlnCW("[COOK]: Everything mixed in the bowl: ${bowl.content} ")
     }
 
-    private suspend fun collectIngredients(ingredients: List<String>) : Flow<String> =
+    private suspend fun gatherIngredients(ingredients: List<String>) : Flow<String> =
         flow { // flow builder
             ingredients.forEach {
                 printlnCW("[COOK]: collecting ingredient $it")
@@ -31,7 +31,7 @@ object Cook {
         recipeName: String
     ) : Bowl {
         var bowl = Bowl.empty()
-        withTimeout(300) {
+        withTimeout(900) {
             pancakeIngredients.collect { // collecting the emitted  values
                 printlnCW("[COOK]: putting $it in a bowl for preparation of $recipeName")
                 bowl = bowl.addContent(it)
