@@ -35,7 +35,7 @@ sdk install java 13
 sdk install kotlin
 ```
 
-The most easy way to do this workshop is to use IntelliJ but other IDE's will also do the job ;)
+The easiest way to do this workshop is to use IntelliJ but other IDE's will also do the job ;)
 
 Some basic knowledge to Kotlin is required to learn the most out of the workshop.
 
