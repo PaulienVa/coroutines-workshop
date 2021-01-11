@@ -5,8 +5,6 @@ Kotlin coroutines are light-weight threads on the JVM. Using coroutines, concurr
 
 <todo add some extra documentation on coroutines and differences with Java>
 
-## Scope
-
 ## First coroutine.
 
 To start to get some feeling on what a coroutine is, let's have a look at our [Cooker](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cooker.kt).
