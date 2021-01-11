@@ -30,25 +30,19 @@ Now run the exercise again to see the order of the logging. It should look like 
 
 ```text
 [Thread: id: 1, name: main, priority: 5] [IN RUN_BLOCKING]: Starting to prepare the boiling of the water
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Starting to boil a pan of water
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 20
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 30
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 40
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 50
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 60
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 70
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 80
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 90
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Increasing pan's temperature to 100
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH 1]: Finished boiling a pan of water
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Starting to boil a pan of water
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 20
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 30
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 40
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 50
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 60
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 70
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 80
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 90
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 100
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Finished boiling a pan of water
 [Thread: id: 1, name: main, priority: 5] [IN RUN_BLOCKING]: Finished boiling a pan of water
 ```
-
-Of course, this is not completely the idea of concurrent programming, but it is good to know how to keep it under control.
-
-## Suspending functions
-
-
 
 ## Cancel the boiling
 
@@ -64,6 +58,22 @@ The two lines of cancelling and join can be combined into one call:
 `job.cancelAndJoin()`
 
 Now, every suspending function is cancellable.
+
+## Suspending functions
+
+Now let's have a look at suspend functions. They are at the center of coroutines. Those functions have the particularity that they can be started, paused and resumed at any moment.
+They have the same syntax as regular functions, but they are prefixed with the keyword `suspend`:
+
+```kotlin
+suspend fun doSomething(val something: Int) {
+  // some implementation
+}
+```
+
+Important to know is that they can only be called from a coroutine or another suspend function.
+
+Now let's see what happens when we extract the lines of code increasing the temperature until the boiling point (the `while` block). Using the refactor function from IntelliJ the `suspend` keyword will be visible in the newly created function.
+This is due to the `delay()` function that is used in the `while` block. This function is suspending the functionality. Removing the call to the `delay` function will make the `suspend` keyword unnecessary.
 
 ## Composing
 
