@@ -10,7 +10,7 @@ For more info read the [official documentation](https://kotlin.github.io/kotlinx
 
 ## Building and collecting a flow
 
-Let's have a look at what this looks like in practice. Open the file [Cook.kt](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cook.kt) 
+Let's have a look at what this looks like in practice. Open the file [Cook.kt](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cook.kt).
 
 ### a. Gather ingredients
 Have a look at the first `private` `suspend` called `gatherIngredients`. It already contains a `flow{}` builder block, to build up the Flow of ingredients.
@@ -36,3 +36,14 @@ Have a look at the logging and see how ingredients are being gathered and direct
 
 A flow can be cancelled, just as suspend functions. In the Cook object, add a delay for emitting the flow values. Set this delay at 100ms. 
 Wrap the collect statement in a `withTimeout` block. Set this timeout to 300ms.
+
+Run the main function in the Exercise2Runner to see how a cancellationException is thrown.
+
+Increase the timeout of the `withTimeout` block up to 900ms for the rest of the exercise.
+
+
+## Operators
+The `Flow` interface has a lot in common with the other collection interfaces in Kotlin, such `Sequence` and `List`.
+In [Cook.kt](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cook.kt) the function `selectFastRecipe()` can be implemented, using `filter`.
+
+It should select all recipes taking less than 10 minutes.

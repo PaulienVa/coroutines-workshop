@@ -1,9 +1,7 @@
 package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen
 
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withTimeout
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen.utensils.Bowl
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.references.Recipe
@@ -39,5 +37,13 @@ object Cook {
             }
         }
         return bowl
+    }
+
+    suspend fun selectFastRecipes(recipes: List<Recipe>) {
+        return recipes.asFlow()
+            .filter {
+                it.duration <= 15
+            }
+            .collect { printlnCW("[COOK]: Fast recipe found: ${it.name}") }
     }
 }
