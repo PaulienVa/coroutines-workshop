@@ -11,20 +11,14 @@ object Exercise1Runner {
     fun run() {
         printlnCW("[RUNNER]: Running Exercise 1 ...\n")
         runBlocking {
-            val waterPan = async { Stove.boil(Pan(1, Liquid.WATER, 10)) }
-            val oliveOilPan = async { Stove.boil(Pan(1, Liquid.OLIVE_OIL, 10)) }
-
-            if (waterPan.await() && oliveOilPan.await()) {
-                println("\n")
-                printlnCW("[RUNNER]: Both pans are finished boiling \n")
-            }
+            Stove.boil(Pan(1, Liquid.WATER, 10))
             printlnCW("[RUNNER]: Finishing exercise 1\n")
         }
 
     }
 }
 
-//fun main(args: Array<String>) {
-//    Exercise1Runner.run()
-//}
+fun main(args: Array<String>) {
+    Exercise1Runner.run()
+}
 

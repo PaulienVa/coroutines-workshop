@@ -3,11 +3,9 @@
 
 Kotlin coroutines are light-weight threads on the JVM. Using coroutines, concurrent programming is made easy.
 
-<todo add some extra documentation on coroutines and differences with Java>
-
 ## First coroutine.
 
-To start to get some feeling on what a coroutine is, let's have a look at our [Cooker](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cook.kt).
+To start to get some feeling on what a coroutine is, let's have a look at our [Stove](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Stove.kt).
 In the function `boil(pan)` a coroutine is started using `runBlocking {}`. `runBlocking` blocks the current thread, executes the code in the block and releases the thread once all the jobs inside the coroutine are completed.
 Using `launch {}` a new coroutine inside the coroutine is started and ran in the background.
 
@@ -27,19 +25,18 @@ By calling the function `join()`, parent coroutine will wait until the job corou
 Now run the exercise again to see the order of the logging. It should look like this:
 
 ```text
-[Thread: id: 1, name: main, priority: 5] [IN RUN_BLOCKING]: Starting to prepare the boiling of the water
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Starting to boil a pan of water
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 20
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 30
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 40
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 50
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 60
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 70
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 80
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 90
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Increasing pan's temperature to 100
-[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Finished boiling a pan of water
-[Thread: id: 1, name: main, priority: 5] [IN RUN_BLOCKING]: Finished boiling a pan of water
+[Thread: id: 1, name: main, priority: 5] [IN RUN_BLOCKING]: Finished boiling a pan of WATER
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Starting to boil a pan of WATER
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 20
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 30
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 40
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 50
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 60
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 70
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 80
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 90
+[Thread: id: 1, name: main, priority: 5] [STOVE: IN LAUNCH]: Increasing WATER's temperature to 100
+[Thread: id: 1, name: main, priority: 5] [IN LAUNCH]: Finished boiling a pan of WATER
 ```
 
 ## Cancel the boiling
