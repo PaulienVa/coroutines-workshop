@@ -1,5 +1,5 @@
-import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.runners.WorkshopRunner
+//import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.runners.WorkshopRunner
 
-fun main(args: Array<String>) {
-    WorkshopRunner.run()
-}
+//fun main(args: Array<String>) {
+//    WorkshopRunner.run()
+//}

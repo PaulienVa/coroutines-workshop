@@ -15,7 +15,7 @@ object Cook {
         printlnCW("[COOK]: Everything mixed in the bowl: ${bowl.content} ")
     }
 
-    private suspend fun gatherIngredients(ingredients: List<String>) : Flow<String> =
+    private suspend fun gatherIngredients(ingredients: List<String>): Flow<String> =
         flow { // flow builder
             ingredients.forEach {
                 printlnCW("[COOK]: collecting ingredient $it")
@@ -24,10 +24,10 @@ object Cook {
             }
         }
 
-    private suspend fun mixInBowl (
+    private suspend fun mixInBowl(
         pancakeIngredients: Flow<String>,
         recipeName: String
-    ) : Bowl {
+    ): Bowl {
         var bowl = Bowl.empty()
         withTimeout(900) {
             pancakeIngredients.collect { // collecting the emitted  values

@@ -8,7 +8,7 @@ import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.kitchen.utensils.P
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.utils.Printer
 
 object Stove {
-    suspend fun boil(pan: Pan) : Boolean {
+    suspend fun boil(pan: Pan): Boolean {
         coroutineScope { //start main coroutine
             val boiler = launch { // launches a new coroutine in the background but continue
                 println("\n")
@@ -24,7 +24,6 @@ object Stove {
         }
         return true
     }
-
 
 
     private suspend fun increaseUntilBoilingPoint(pan: Pan) {

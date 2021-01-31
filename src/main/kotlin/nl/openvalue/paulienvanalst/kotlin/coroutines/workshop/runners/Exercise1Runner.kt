@@ -24,7 +24,7 @@ object Exercise1Runner {
     }
 }
 
-fun main(args: Array<String>) {
-    Exercise1Runner.run()
-}
+//fun main(args: Array<String>) {
+//    Exercise1Runner.run()
+//}
 
