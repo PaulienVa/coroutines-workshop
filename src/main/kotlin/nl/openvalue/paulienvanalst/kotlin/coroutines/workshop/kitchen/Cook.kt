@@ -16,7 +16,7 @@ object Cook {
         printlnCW("[COOK]: Everything mixed in the bowl: ${bowl.content} ")
     }
 
-    private suspend fun gatherIngredients(ingredients: List<String>): Flow<String> =
+    suspend fun gatherIngredients(ingredients: List<String>): Flow<String> =
         flow { // flow builder
         }
 

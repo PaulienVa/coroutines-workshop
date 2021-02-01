@@ -10,9 +10,9 @@ For more info read the [official documentation](https://kotlin.github.io/kotlinx
 
 ## Building and collecting a flow
 
-Let's have a look at what this looks like in practice. Open the file [Cook.kt](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cook.kt).
 
 ### a. Gather ingredients
+Let's have a look at what this looks like in practice. Open the file [Cook.kt](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/kitchen/Cook.kt).
 Have a look at the first `private` `suspend` called `gatherIngredients`. It already contains a `flow{}` builder block, to build up the Flow of ingredients.
 The flow of ingredients should emit each ingredient of the recipe. For each ingredient the following print statement should be there as well:
 ```kotlin

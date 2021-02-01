@@ -9,7 +9,8 @@ object Exercise2Runner {
     fun run() {
         printlnCW("[RUNNER]: Running Exercise 2 ...\n")
         runBlocking {
-            Cook.selectFastRecipes(listOf(pancakes, scrambledEggs, fondue))
+            Cook.mixIngredientsInBowl(pancakes)
+//            Cook.selectFastRecipes(listOf(pancakes, scrambledEggs, fondue))
 
         }
         println("\n")
@@ -17,9 +18,9 @@ object Exercise2Runner {
     }
 }
 
-//fun main() {
-//    Exercise2Runner.run()
-//}
+fun main() {
+    Exercise2Runner.run()
+}
 
 private val pancakes = Recipe(
     "pancakes",
