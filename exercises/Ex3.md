@@ -73,6 +73,7 @@ As a Java framework is introduced, null safety has to be enforced at the Java si
     </configuration>
 ```
 
+### Build and endpoint
 Now off we go!
 
 In the package `application`, open the class [SpringWebFluxApplication.kt](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/application/SpringWebFluxApplication.kt).
