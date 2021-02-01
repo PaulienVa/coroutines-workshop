@@ -131,5 +131,8 @@ data class RecipeRow(@Id var id:Long?, var name : String, var duration: Integer)
 This repository should implement one function to retrieve all the recipes from the database (`"SELECT * FROM recipes;"`).
 
 Return the values from the query to the handler, so that the endpoint is now returning data from the database.
-s
+
+Do make sure the values returned by the endpoint are of `Recipe` and not of type `RecipeRow`. (Hint: use `transform {}` and `emit()`).
+
+
 ## Ktor

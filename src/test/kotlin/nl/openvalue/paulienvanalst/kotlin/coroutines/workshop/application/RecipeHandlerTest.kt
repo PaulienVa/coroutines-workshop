@@ -1,5 +1,6 @@
 package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.application
 
+import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.references.Recipe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,6 +24,7 @@ class RecipeHandlerTest {
             .exchange()
             .expectStatus()
             .isOk
+            .expectBodyList(Recipe::class.java)
     }
 
     @Test
@@ -32,6 +34,7 @@ class RecipeHandlerTest {
             .exchange()
             .expectStatus()
             .isOk
+            .expectBodyList(Recipe::class.java)
     }
 }
 

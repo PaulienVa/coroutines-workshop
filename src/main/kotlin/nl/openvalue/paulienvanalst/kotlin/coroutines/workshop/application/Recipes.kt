@@ -1,6 +1,7 @@
 package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.application
 
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.reactive.asFlow
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.references.Recipe
 import org.springframework.beans.factory.annotation.Autowired
@@ -36,7 +37,10 @@ open class RecipeHandler(private val recipesRepository: RecipesRepository) {
             pancakes, scrambledEggs, fondue
         )
 
-        val recipes2 = recipesRepository.findAllBy().asFlow()
+        val recipes2 = recipesRepository.findAll().asFlow()
+            .transform {
+                emit(Recipe(it.name, it.duration, listOf(), ""))
+            }
         return ok().bodyAndAwait(recipes2)
     }
 }
@@ -65,8 +69,8 @@ private val fondue = Recipe(
 interface RecipesRepository : ReactiveCrudRepository<RecipeRow, Long> {
 
     @Query("SELECT * FROM recipes;")
-    fun findAllBy(): Flux<RecipeRow>
+    override fun findAll(): Flux<RecipeRow>
 }
 
 @Table
-data class RecipeRow(@Id var id:Long?, var name : String, var duration: Integer)
+data class RecipeRow(@Id var id:Long?, var name : String, var duration: Int)
