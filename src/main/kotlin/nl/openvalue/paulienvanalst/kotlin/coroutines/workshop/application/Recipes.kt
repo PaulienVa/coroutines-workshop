@@ -1,35 +1,24 @@
 package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.application
 
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.transform
-import kotlinx.coroutines.reactive.asFlow
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.references.Recipe
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.data.annotation.Id
-import org.springframework.data.r2dbc.repository.Query
-import org.springframework.data.relational.core.mapping.Table
-import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Repository
-import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.*
 import org.springframework.web.reactive.function.server.ServerResponse.ok
-import reactor.core.publisher.Flux
 
 @Configuration
 open class RoutingConfiguration {
 
     @Bean
     open fun mainRouter(recipeHandler: RecipeHandler): RouterFunction<ServerResponse> = coRouter {
-        (GET("/api/v0/recipes") or GET("/api/recipes")).invoke(recipeHandler::findAll)
     }
 
 }
 
 @Component
-open class RecipeHandler(private val recipesRepository: RecipesRepository) {
+open class RecipeHandler() {
 
     suspend fun findAll(request: ServerRequest): ServerResponse {
 
@@ -37,11 +26,7 @@ open class RecipeHandler(private val recipesRepository: RecipesRepository) {
             pancakes, scrambledEggs, fondue
         )
 
-        val recipes2 = recipesRepository.findAll().asFlow()
-            .transform {
-                emit(Recipe(it.name, it.duration, listOf(), ""))
-            }
-        return ok().bodyAndAwait(recipes2)
+        return ok().bodyAndAwait(recipes)
     }
 }
 
@@ -64,13 +49,3 @@ private val fondue = Recipe(
     listOf("cheese", "wine", "kirsch", "garlic"),
     "Cook the wine, add the cheese, add the kirsch and garlic"
 )
-
-@Repository
-interface RecipesRepository : ReactiveCrudRepository<RecipeRow, Long> {
-
-    @Query("SELECT * FROM recipes;")
-    override fun findAll(): Flux<RecipeRow>
-}
-
-@Table
-data class RecipeRow(@Id var id:Long?, var name : String, var duration: Int)
