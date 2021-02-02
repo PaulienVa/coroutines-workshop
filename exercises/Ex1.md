@@ -3,7 +3,13 @@
 
 Kotlin coroutines are light-weight threads on the JVM. Using coroutines, concurrent programming is made easy.
 
-Coroutines can be seen as little executables on a thread, that can be ran, suspended, cancelled and resumed whenever the programmer wants.
+Coroutines can be seen as little executables on a thread, that can be ran, suspended, cancelled and resumed whenever the software wants.
+In contrast to functions in the classical programming known in Java or Kotlin (Image A[^1]), a coroutine, when executed, does not block the thread. Meanwhile, on the same thread, another function can be executed (Image B[^1]).
+
+![Image A: "classical functions"](./images/classical_functions_on_thread.png)
+![Image B: "coroutine functions"](./images/suspend_functions_on_thread.png)
+
+
 Several coroutines can be ran on one or several threads. Using a declarative DSL and a familiar, Kotlin does not only offer a solution to concurrent and asynchronous programming, it also strives to support readable and maintainable code.
 
 ## First coroutine.
@@ -130,3 +136,5 @@ withTimeout(10){
     }
 }
 ```
+
+[^1]: Source for the images: [https://medium.com/mobile-app-development-publication/understanding-suspend-function-of-coroutines-de26b070c5ed](https://medium.com/mobile-app-development-publication/understanding-suspend-function-of-coroutines-de26b070c5ed)
