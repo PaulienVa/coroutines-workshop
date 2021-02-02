@@ -10,7 +10,7 @@ object Exercise2Runner {
         printlnCW("[RUNNER]: Running Exercise 2 ...\n")
         runBlocking {
             Cook.mixIngredientsInBowl(pancakes)
-//            Cook.selectFastRecipes(listOf(pancakes, scrambledEggs, fondue))
+            Cook.selectFastRecipes(listOf(pancakes, scrambledEggs, fondue))
 
         }
         println("\n")
