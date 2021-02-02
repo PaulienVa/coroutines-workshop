@@ -14,10 +14,14 @@ Let's have a look at what this looks like in practice. Open the file [Cook.kt](.
 
 ### a. Gather ingredients
 Have a look at the first `private` `suspend` called `gatherIngredients`. It already contains a `flow{}` builder block, to build up the Flow of ingredients.
-The flow of ingredients should emit each ingredient of the recipe. For each ingredient the following print statement should be there as well:
-```kotlin
-printlnCW("[COOK]: gathering ingredient $it")
-```
+
+`gatherIngredients` accepts a list of ingredients. For this exerice the following should be done:
+
+- convert the list of `String` to a flow of `String`
+- use `forEach {}` to go through the elements
+- print the following line ```printlnCW("[COOK]: collecting ingredient $it")```
+- use the `emit()` function to be able to pick up the ingredients in the next step in the runner
+
 
 ### b. Mixing the ingredients
 Now the cook is able to gather the ingredients from a recipe, so let's mix them in a bowl. For that the `private` `suspend` function `mixInBowl` is ready to mix!
@@ -31,6 +35,8 @@ printlnCW("[COOK]: putting $it in a bowl for preparation of $recipeName")
 Now run the main function in the [Exercise2Runner.kt](../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/runners/Exercise2Runner.kt).
 
 Have a look at the logging and see how ingredients are being gathered and directly put in the bowl.
+
+What happened here: the `emit()` function emits values, that are directly collected in the following function.
 
 ## Cancelling
 
