@@ -18,8 +18,7 @@ Have a look at the print statements to understand the order in which the code is
 Now the last line of logging in the `runBlocking {}` block, is not the last one showed. The only way to get this done is to wait until the child coroutine is finished. 
 
 To do so, assign the `launch {}` block to a variable called `job`. 
-
-/!\ it is important this variable is assigned into the `runBlocking` as the coroutines is executed.
+Be careful! It is important this variable is assigned into the `runBlocking` as the coroutines is executed.
 
 This variable `job` is of type `Job`.
 By calling the function `join()`, parent coroutine will wait until the job coroutine is completed. 
