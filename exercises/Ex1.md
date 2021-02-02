@@ -3,7 +3,8 @@
 
 Kotlin coroutines are light-weight threads on the JVM. Using coroutines, concurrent programming is made easy.
 
-<todo add some extra documentation on coroutines and differences with Java>
+Coroutines can be seen as little executables on a thread, that can be ran, suspended, cancelled and resumed whenever the programmer wants.
+Several coroutines can be ran on one or several threads. Using a declarative DSL and a familiar, Kotlin does not only offer a solution to concurrent and asynchronous programming, it also strives to support readable and maintainable code.
 
 ## First coroutine.
 
