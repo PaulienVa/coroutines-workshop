@@ -17,9 +17,9 @@ object Exercise2Runner {
     }
 }
 
-//fun main() {
-//    Exercise2Runner.run()
-//}
+fun main() {
+    Exercise2Runner.run()
+}
 
 private val pancakes = Recipe(
     "pancakes",
