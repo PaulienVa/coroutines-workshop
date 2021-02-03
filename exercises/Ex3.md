@@ -80,9 +80,15 @@ As a Java framework is introduced, null safety has to be enforced at the Java si
 Now off we go!
 
 In the package `application`, open the class [SpringWebFluxApplication.kt](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/application/SpringWebFluxApplication.kt).
+
+Uncomment the outcommented code.
+
 This still looks like the classic Spring boot class (but with a Kotlin flavor).
 
 Now let's implement some REST calls in [Recipes.kt](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/application/Recipes.kt).
+
+
+Uncomment the outcommented code.
 
 There, two classes are already defined: 
 
