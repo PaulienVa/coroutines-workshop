@@ -60,6 +60,9 @@ To the `<build>` section of the pom add:
     <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <mainClass>nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.application.SpringWebFluxApplication</mainClass>
+        </configuration>
     </plugin>
 ```
 
@@ -77,9 +80,15 @@ As a Java framework is introduced, null safety has to be enforced at the Java si
 Now off we go!
 
 In the package `application`, open the class [SpringWebFluxApplication.kt](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/application/SpringWebFluxApplication.kt).
+
+Uncomment the outcommented code.
+
 This still looks like the classic Spring boot class (but with a Kotlin flavor).
 
 Now let's implement some REST calls in [Recipes.kt](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/application/Recipes.kt).
+
+
+Uncomment the outcommented code.
 
 There, two classes are already defined: 
 
@@ -119,6 +128,32 @@ Let's integrate an h2 database:
     <artifactId>spring-data-r2dbc</artifactId>
     <version>1.2.3</version>
 </dependency>
+```
+
+Now annotate the [SpringWebFluxApplication.kt](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/application/SpringWebFluxApplication.kt) with the following:
+
+```
+@EnableR2dbcRepositories
+```
+
+from the package `org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories`.
+
+And add the following configuration in the same file:
+
+```
+@Configuration
+open class DatabaseConfiguration {
+    @Bean
+    open fun initializer(connectionFactory: ConnectionFactory): ConnectionFactoryInitializer {
+        val initializer = ConnectionFactoryInitializer()
+        initializer.setConnectionFactory(connectionFactory)
+        val populator = CompositeDatabasePopulator()
+        populator.addPopulators(ResourceDatabasePopulator(ClassPathResource("schema.sql")))
+        populator.addPopulators(ResourceDatabasePopulator(ClassPathResource("data.sql")))
+        initializer.setDatabasePopulator(populator)
+        return initializer
+    }
+}
 ```
 
 
