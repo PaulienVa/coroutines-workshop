@@ -124,6 +124,32 @@ Let's integrate an h2 database:
 </dependency>
 ```
 
+Now annotate the [SpringWebFluxApplication.kt](./../src/main/kotlin/nl/openvalue/paulienvanalst/kotlin/coroutines/workshop/application/SpringWebFluxApplication.kt) with the following:
+
+```
+@EnableR2dbcRepositories
+```
+
+from the package `org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories`.
+
+And add the following configuration in the same file:
+
+```
+@Configuration
+open class DatabaseConfiguration {
+    @Bean
+    open fun initializer(connectionFactory: ConnectionFactory): ConnectionFactoryInitializer {
+        val initializer = ConnectionFactoryInitializer()
+        initializer.setConnectionFactory(connectionFactory)
+        val populator = CompositeDatabasePopulator()
+        populator.addPopulators(ResourceDatabasePopulator(ClassPathResource("schema.sql")))
+        populator.addPopulators(ResourceDatabasePopulator(ClassPathResource("data.sql")))
+        initializer.setDatabasePopulator(populator)
+        return initializer
+    }
+}
+```
+
 
 Now implement a `ReactiveCrudRepository<RecipeRow, Long>` using `RecipeRow as:
 
