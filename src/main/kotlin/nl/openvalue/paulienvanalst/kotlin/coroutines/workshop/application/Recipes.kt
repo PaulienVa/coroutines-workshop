@@ -2,32 +2,32 @@ package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.application
 
 import kotlinx.coroutines.flow.flowOf
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.references.Recipe
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import org.springframework.stereotype.Component
-import org.springframework.web.reactive.function.server.*
-import org.springframework.web.reactive.function.server.ServerResponse.ok
+//import org.springframework.context.annotation.Bean
+//import org.springframework.context.annotation.Configuration
+//import org.springframework.stereotype.Component
+//import org.springframework.web.reactive.function.server.*
+//import org.springframework.web.reactive.function.server.ServerResponse.ok
 
-@Configuration
+//@Configuration
 open class RoutingConfiguration {
 
-    @Bean
-    open fun mainRouter(recipeHandler: RecipeHandler): RouterFunction<ServerResponse> = coRouter {
-    }
+//    @Bean
+//    open fun mainRouter(recipeHandler: RecipeHandler): RouterFunction<ServerResponse> = coRouter {
+//    }
 
 }
 
-@Component
+//@Component
 open class RecipeHandler() {
 
-    suspend fun findAll(request: ServerRequest): ServerResponse {
-
-        val recipes = flowOf(
-            pancakes, scrambledEggs, fondue
-        )
-
-        return ok().bodyAndAwait(recipes)
-    }
+//    suspend fun findAll(request: ServerRequest): ServerResponse {
+//
+//        val recipes = flowOf(
+//            pancakes, scrambledEggs, fondue
+//        )
+//
+//        return ok().bodyAndAwait(recipes)
+//    }
 }
 
 
