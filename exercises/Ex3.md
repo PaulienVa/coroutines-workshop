@@ -60,6 +60,9 @@ To the `<build>` section of the pom add:
     <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <mainClass>nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.application.SpringWebFluxApplication</mainClass>
+        </configuration>
     </plugin>
 ```
 
