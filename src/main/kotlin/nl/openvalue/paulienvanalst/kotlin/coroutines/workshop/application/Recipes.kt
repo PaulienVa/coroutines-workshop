@@ -1,19 +1,18 @@
 package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.application
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.transform
-import kotlinx.coroutines.reactive.asFlow
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.references.Recipe
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.annotation.Id
 import org.springframework.data.r2dbc.repository.Query
 import org.springframework.data.relational.core.mapping.Table
+import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
-import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.*
 import org.springframework.web.reactive.function.server.ServerResponse.ok
 import reactor.core.publisher.Flux
@@ -29,7 +28,7 @@ open class RoutingConfiguration {
 }
 
 @Component
-open class RecipeHandler(private val recipesRepository: RecipesRepository) {
+open class RecipeHandler(private val recipesRepository2: RecipesRepository2) {
 
     suspend fun findAll(request: ServerRequest): ServerResponse {
 
@@ -37,7 +36,7 @@ open class RecipeHandler(private val recipesRepository: RecipesRepository) {
             pancakes, scrambledEggs, fondue
         )
 
-        val recipes2 = recipesRepository.findAll().asFlow()
+        val recipes2 = recipesRepository2.findAll()
             .transform {
                 emit(Recipe(it.name, it.duration, listOf(), ""))
             }
@@ -70,6 +69,13 @@ interface RecipesRepository : ReactiveCrudRepository<RecipeRow, Long> {
 
     @Query("SELECT * FROM recipes;")
     override fun findAll(): Flux<RecipeRow>
+}
+
+@Repository
+interface RecipesRepository2 : CoroutineCrudRepository<RecipeRow, Long> {
+
+    @Query("SELECT * FROM recipes;")
+    override fun findAll(): Flow<RecipeRow>
 }
 
 @Table

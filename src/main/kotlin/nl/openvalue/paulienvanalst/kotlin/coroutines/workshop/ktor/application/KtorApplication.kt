@@ -3,18 +3,16 @@ package nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.ktor.application
 import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.jackson.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import io.ktor.jackson.jackson
-import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import nl.openvalue.paulienvanalst.kotlin.coroutines.workshop.references.Recipe
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SchemaUtils.createMissingTablesAndColumns
 import org.jetbrains.exposed.sql.transactions.experimental.suspendedTransactionAsync
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.jetbrains.exposed.sql.SchemaUtils.createMissingTablesAndColumns
-import org.springframework.boot.convert.ApplicationConversionService.configure
 
 
 fun main(args: Array<String>): Unit {
