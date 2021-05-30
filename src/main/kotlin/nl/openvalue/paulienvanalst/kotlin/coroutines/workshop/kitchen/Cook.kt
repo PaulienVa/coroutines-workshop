@@ -19,7 +19,7 @@ object Cook {
         flow { // flow builder
             ingredients.forEach {
                 printlnCW("[COOK]: collecting ingredient $it")
-                delay(100)
+                delay(1000)
                 emit(it) //emit value to flow
             }
         }
